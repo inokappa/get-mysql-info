@@ -22,6 +22,7 @@ end
 class Mycommand < Con
   def mysql_variables_com(myuser,mypass,*args)
     my_rets = []
+    my_rets << "MySQL_Variables"
     args.each do |params|
      params.each do |param|
       if !(param == "variables")
@@ -38,6 +39,7 @@ class Mycommand < Con
   end
   def server_status
     os_rets = []
+    os_rets << "OS_Status"
     os_raw = ssh_exec("uname -s")
     if os_raw == "FreeBSD\n"
       mem_raw = ssh_exec("grep memory /var/run/dmesg.boot | egrep 'real|usable' | awk '{print $5,$6}'")
@@ -51,8 +53,8 @@ end
 #
 filename = './server_info'
 file = open(filename)
-result = []
 while text = file.gets do
+  result = []
   arr = text.split(",")
   chk = Mycommand.new("#{arr[0]}","#{arr[1]}","#{arr[2]}")
   myuser = "#{arr[3]}"
@@ -62,7 +64,7 @@ while text = file.gets do
   result << "#{arr[0]}"
   result << os_rets
   result << my_rets
-  puts result
+  p result
   #result.to_json(:root => false)
   #json = JSON.pretty_generate([result])
   #puts json
