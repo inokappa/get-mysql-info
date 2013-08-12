@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title>redis info</title>
+  </head>
+  <body>
+    <h1>redis info</h1>
+     <ul>
+      <% @rows.each do |row| %>
+        <li> <%= "#{row}" %> </li>
+      <% end %>
+     </ul>
+  </body>
+</html>
