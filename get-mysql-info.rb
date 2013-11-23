@@ -68,4 +68,5 @@ while text = file.gets do
   #result.to_json(:root => false)
   #json = JSON.pretty_generate([result])
   #puts json
+  puts a
 end
